@@ -797,8 +797,6 @@
                             console.log('SWITCH CONNECTED, SHIT!')
                             console.log('Wire Top:', wireTop, 'Wire Bottom:', wireBottom, 'Wire Left:', wireLeft, 'Wire Right:', wireRight);
                             console.log('Switch Top:', switchTop, 'Switch Bottom:', switchBottom, 'Switch Left:', switchLeft, 'Switch Right:', switchRight);    
-                            anode.classList.remove('anode');
-                            anode.classList.add('fixed-component');
                             const newWire = document.createElement('div');
                             newWire.style.width = '2px';
                             newWire.style.height = '80px';
@@ -813,7 +811,9 @@
                             newWire.visibility = 'visible';
                             newWire.style.top = `${switchTop}px`;
                             newWire.style.left = `${switchRight}px`;
-                            dropArea.appendChild(newWire);
+                            document.querySelector('#level-one-screen .drop-area').appendChild(newWire);
+                            anode.classList.remove('anode');
+                            anode.classList.add('fixed-component');
                             switchConnected = true;
                             createSuccessMessage('Switch successfully connected!', true, 'green', 
                             "<b> Next Step: </b> Add the metallic core to both the wires to continue the simulation!");
@@ -1025,6 +1025,13 @@
 
                             document.getElementById('goToEndScreen').addEventListener('click', (e) => {
                                 document.getElementById('level-two-end-screen').style.display = 'block';
+                                document.getElementById('completeLevelTwo').addEventListener('click', () => {
+                                    completeLevel(2);
+                                    document.querySelectorAll('.screen').forEach(screen => {
+                                        screen.classList.add('hidden');
+                                    });
+                                    levelsScreen.classList.remove('hidden');
+                                });
                             });
                         }
                     }   
