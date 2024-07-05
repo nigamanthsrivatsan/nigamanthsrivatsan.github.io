@@ -1,0 +1,427 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    background: hsla(217, 100%, 50%, 1);
+background: linear-gradient(45deg, hsla(217, 100%, 50%, 1) 0%, #4194D9 100%);
+background: -moz-linear-gradient(45deg, hsla(217, 100%, 50%, 1) 0%, #4194D9 100%);
+background: -webkit-linear-gradient(45deg, hsla(217, 100%, 50%, 1) 0%, #4194D9 100%);
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0061FF", endColorstr="#4194D9", GradientType=1 );
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #fff;
+    overflow: hidden !important;
+}
+
+.hide {
+display: none;
+}
+
+.drop-area.over {
+border: 2px dashed #000; /* Example style */
+}
+
+body.dragging, body.dragging * {
+cursor: not-allowed !important;
+}
+
+p, ul li, button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.hidden {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+.bottom-div {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    padding-top: 2rem;
+    left: 0;
+    right: 0;
+    background: #000;
+    color: #f5f5f5;
+    z-index: 1002;
+}
+
+.screen {
+    width: 80%;
+    min-height: 80vh;
+    position: relative;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    color: #333; /* Text color inside screens */
+    animation: fadeIn 0.8s ease-in-out forwards; /* Fade-in animation */
+    opacity: 0; /* Start with opacity 0 for animation */
+}
+
+/* Container for the sidebar and drop area */
+.container {
+position: relative;
+display: grid;
+grid-template-columns: repeat(12, 1fr); /* 12-column grid */
+height: 100vh; /* Full viewport height */
+width: 100vw; /*ull viewport width */
+margin: 0; /* Remove any default margin */
+padding: 0; /* Ensure no padding around the container */
+}
+
+/* Sidebar styles */
+.sidebar {
+grid-column: 1 / span 1; 
+background-color: #f5f5f5;
+display: flex;
+flex-direction: column;
+gap: 10px; /* Spacing between components */
+padding: 10px;
+padding-right: 1rem;
+padding-top: 1rem;
+height: 100%;
+box-sizing: border-box; /* Include padding in the element's total width and height */
+}
+
+.sidebar .component, .delete-option {
+padding: 6px;
+background-color: #d5d5d5;
+border-radius: 5px;
+width: fit-content;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+cursor: pointer;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 5px;
+}
+
+.delete-selected {
+background-color: #ff4d4d; 
+}
+.delete-selected p {
+color: #f5f5f5 !important;
+}
+
+.sidebar .component img, .delete-option img {
+padding-top: 0.5rem;
+width: 32px; height: 32px; object-fit: cover;
+}
+
+.sidebar .component p, .delete-option p {
+font-size: 1rem; color: #333;
+text-align: center;
+}
+
+#generator-levelTwo img {
+width: 48px; height: 48px; object-fit: cover;
+}
+
+/* Drop area styles */
+.drop-area {
+grid-column: 2 / -1; /* Occupy the remaining 9 columns */
+background-color: #c98737; /* Brownish color */
+box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+border-radius: 10px;
+height: 100%;
+max-width: 65vw;
+position: relative;
+color: #333;
+animation: fadeIn 0.8s ease-in-out forwards;
+box-sizing: border-box; /* Include padding in the element's total width and height */
+}
+
+.drop-area .text-on-top {
+position: absolute;
+top: 1rem;
+left: 50%;
+transform: translateX(-50%);
+}
+.drop-area h1 {
+position: relative;
+font-size: 1.2rem;
+margin-bottom: 0.3rem !important;
+color: #f5f5f5;
+}
+
+.drop-area p {
+position: relative; 
+font-size: 0.9rem;
+color: #f5f5f5;
+}
+
+#level-two-screen .drop-area p {
+    text-align: center;
+    max-width: 80%;
+    padding-left: 2rem;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #007BFF; /* Blue color for headings */
+}
+
+p {
+    font-size: 1.2rem;
+    color: #666; /* Slightly muted text color */
+    margin-bottom: 15px;
+}
+
+button {
+    padding: 12px 24px;
+    margin: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background: hsla(217, 100%, 50%, 1);
+background: linear-gradient(45deg, hsla(217, 100%, 50%, 1) 0%, #4194D9 100%);
+background: -moz-linear-gradient(45deg, hsla(217, 100%, 50%, 1) 0%, #4194D9 100%);
+background: -webkit-linear-gradient(45deg, hsla(217, 100%, 50%, 1) 0%, #4194D9 100%);
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0061FF", endColorstr="#4194D9", GradientType=1 );
+    font-weight: bold;
+    color: #fff;
+    transition: background-color 0.3s ease;
+    animation: fadeInButton 1s ease-in-out forwards; /* Fade-in animation for buttons */
+    opacity: 0; /* Start with opacity 0 for animation */
+}
+
+@keyframes fadeInButton {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+button:hover {
+    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+button.locked {
+    background: #999 !important;
+    cursor: not-allowed;
+}
+
+button.locked:hover {
+    background-color: #999;
+}
+
+ul {
+    text-align: left; /* Align bullet points to the left */
+    padding-left: 0; /* Remove default padding */
+    margin-bottom: 15px; /* Adjust margin between lists */
+}
+
+li {
+    text-align: center; /* Align list item text to center */
+    list-style-position: inside; /* Position bullet inside list item */
+    font-size: 1.1rem;
+    margin-bottom: 5px; /* Reduce margin between list items */
+    padding-left: 5px; /* Add padding to the left of the list item */
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.flex-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+
+.image-container {
+    position: absolute;
+    top: 5rem; /* Start from the vertical center */
+    left: 5rem; /* Start from the horizontal center */
+}
+
+#magnet-animation {
+    width: 72px;
+    height: 72px;
+    padding: 1rem;
+    background-color: #FFD700; /* Gold */
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    animation: magnetMovement 2s infinite alternate ease-in-out;
+}
+
+@keyframes magnetMovement {
+    0% {
+        transform: translate(-50%, -50%) translate(0, 0); /* Start position */
+    }
+    100% {
+        transform: translate(-50%, -50%) translate(20px, -20px); /* End position */
+    }
+}
+
+.drop-area {
+    cursor: auto; /* Default cursor for the drop area */
+}
+.drop-area img {
+    width: 50px;
+    height: auto;
+}
+
+.grid-col {
+    display: grid;
+    grid-template-rows: auto auto auto;
+}
+.grid-row {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.wire {
+    position: absolute;
+    background-color: black;
+    height: 2px; /* Default height */
+}
+
+/* CSS for moving blue effect */
+@keyframes traverseBorders {
+0% {
+border-top-color: linear-gradient(to right, rgba(0, 0, 255, 0.5), rgba(255, 255, 255, 0), rgba(0, 0, 255, 0.5));
+}
+25% {
+border-right-color: linear-gradient(to right, rgba(0, 0, 255, 0.5), rgba(255, 255, 255, 0), rgba(0, 0, 255, 0.5));
+border-top-color: transparent;
+}
+50% {
+border-bottom-color: linear-gradient(to right, rgba(0, 0, 255, 0.5), rgba(255, 255, 255, 0), rgba(0, 0, 255, 0.5));
+border-right-color: transparent;
+}
+75% {
+border-left-color: linear-gradient(to right, rgba(0, 0, 255, 0.5), rgba(255, 255, 255, 0), rgba(0, 0, 255, 0.5));
+border-bottom-color: transparent;
+}
+100% {
+border-top-color: linear-gradient(to right, rgba(0, 0, 255, 0.5), rgba(255, 255, 255, 0), rgba(0, 0, 255, 0.5));
+border-left-color: transparent;
+}
+}
+
+.blueLineFlow {
+position: relative;
+animation: traverseBorders 4s linear infinite;
+box-sizing: border-box;
+}
+
+.blueLineFlow::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+border: 4px solid transparent;
+border-radius: inherit;
+background: linear-gradient(45deg, rgba(32, 248, 255, 0.91), rgba(27, 221, 255, 0.533), rgba(0, 234, 255, 0.21)) border-box;
+background-size: 200% 200%;
+animation: shiftGradient 4s linear infinite;
+z-index: -1;
+}
+
+.blueLineFlow::after {
+content: '→';
+position: absolute;
+font-size: 30px;
+color: blue;
+animation: followArrow 4s linear infinite;
+transform: translate(-50%, -50%);
+}       
+
+#level-one-end-screen {
+display: none;
+position: fixed;
+z-index: 99;
+left: 0; top: 0;
+width: 100%; height: 100%; align-items: center; justify-content: center;
+overflow: hidden;  
+background-color: rgb(0,0,0); 
+color: #f5f5f5;
+cursor: auto !important;
+}
+
+#level-one-end-screen p {
+color: #f5f5f5;
+}
+
+#level-one-end-screen h2 {
+color: #FFD700;
+}
+
+#level-two-end-screen {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    width: 100%; height: 100%; align-items: center; justify-content: center;
+overflow: hidden;  
+background-color: rgb(0,0,0); 
+color: #f5f5f5;
+cursor: auto !important;
+}
+
+#level-two-end-screen h2 {
+    color: #FFD700;
+}
+
+#level-two-end-screen p {
+    color: #f5f5f5;
+}
+
+@keyframes shiftGradient {
+0% {
+background-position: 0% 50%;
+}
+50% {
+background-position: 100% 50%;
+}
+100% {
+background-position: 0% 50%;
+}
+}
+
+@keyframes followArrow {
+0% {
+top: -30px;
+left: 50%;
+}
+25% {
+top: 50%;
+right: -30px;
+}
+50% {
+bottom: -30px;
+left: 50%;
+}
+75% {
+top: 50%;
+left: -30px;
+}
+100% {
+top: -30px;
+left: 50%;
+}
+}

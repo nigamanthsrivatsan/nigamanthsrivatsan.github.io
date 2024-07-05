@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electromagnetic Escape Game</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+
+    <div id="home-screen" class="screen">
+        <div class="image-container">
+            <img src="./magnetIcon.png" alt="" id="magnet-animation">
+        </div>
+        <h1>Electromagnetic Escape</h1>
+        <p>
+            <!-- add a brief description of the game -->
+        </p>
+        <button id="instructions">Prerequisites</button>
+        <button id="start-game">Start Game</button>
+    </div>
+
+    <div id="instructions-screen" class="hidden screen">
+        <h1 style="margin-bottom: 0.4rem;">Prerequisites</h1>
+        <p>Welcome to the Electromagnetic Escape game. In this game, you will be trapped in rooms and need to use your knowledge of electromagnetic induction and electricity to escape. 
+            You must understand these concepts to proceed further:</p>
+        <ul>
+            <li><strong>Basic understanding of circuits:</strong> Learn how electricity flows through components like wires, resistors, and switches to form circuits that power devices.</li>
+            <li><strong>Knowledge of generators and transformers:</strong> Understand how generators convert mechanical energy into electrical energy, and understand how transformers increase or decrease voltage levels for efficient electricity transmission.</li>
+            <li><strong>Understanding of electromagnetic induction:</strong> Understand how moving a magnet near a coil of wire induces electricity, a principle crucial for generating electricity in power plants and other applications.</li>
+        </ul>
+            
+        <button id="back-to-home">Back to Home</button>
+    </div>
+
+    <div id="levels-screen" class="hidden screen">
+        <h1>Select a Level</h1>
+        <div class="flex-col">
+            <div class="flex-row">
+                <button class="level-button" data-level="1">Level 1</button>
+                <button class="level-button" data-level="2">Level 2</button>
+            </div>
+            <button id="back-to-home-from-levels">Back to Home</button>
+        </div>
+    </div>
+
+    <div id="level-instructions-screen" class="hidden screen">
+        <h1>Level Instructions</h1>
+        <div id="level-instructions"></div>
+        <button id="start-level">Start Level</button>
+        <button id="back-to-levels">Back to Levels</button>     
+    </div>
+
+    <div id="level-one-screen" class="hidden screen">
+        <div class="container">
+            <div class="sidebar">
+                <div class="flex-col">
+                    <div class="flex-row">
+                        <div class="component" draggable="true" id="wire">
+                            <img src="./wires-icon.png" alt="">
+                            <p>
+                                Wire
+                            </p>
+                        </div>
+                        <div class="component" draggable="true" id="battery">
+                            <img src="./battery-icon.png" alt="">
+                            <p>Battery</p>
+                        </div>
+                    </div>
+                    <div class="flex-row">
+                        <div class="component" draggable="true" id="switch">
+                            <img src="./switch-icon.png" alt="">
+                            <p>
+                                Switch
+                            </p>
+                        </div>
+                        <div class="component" draggable="true" id="resistor">
+                            <img src="./resistor-icon.png" alt="">
+                            <p>Resistor</p>
+                        </div>
+                    </div>
+                    <div class="flex-row">
+                        <div class="component" draggable="true" id="metal-core">
+                            <img src="./metal-core-icon.png" alt="">
+                            <p>
+                                Metal Core
+                            </p>
+                        </div>
+                        <div class="delete-option" id="delete-option">
+                            <img src="./delete-icon.png" alt="">
+                            <p>
+                                Delete
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="drop-area">
+                <div class="text-on-top">
+                    <h1>Level 1: Magnetic Fields & Induction</h1>
+                    <p>
+                        Assemble this circuit to prove Lenz's Law and Faraday's Law. Drag and drop components to the work area to complete the circuit. <br>  
+                    </p>
+                    <p id="hintText">
+                        <b>Hint:</b> Start by assembling a battery and connecting wires to its positive and negative terminal.
+                    </p>
+                </div>
+            </div>  
+            <div id="level-one-end-screen">
+                <div class="modal-content">
+                    <h2>Congratulations! You've Completed the Circuit!</h2>
+                    <p>This circuit is a practical demonstration of <strong>Lenz's Law</strong> and <strong>Faraday's Law of Electromagnetic Induction</strong>. By assembling the circuit, you've created a scenario where an electric current generates a magnetic field, illustrating Faraday's discovery that a change in magnetic environment of a coil of wire will induce an electromotive force (EMF) in the coil.</p>
+                    <p><strong>Lenz's Law</strong>, on the other hand, explains the direction of the induced EMF and current resulting from electromagnetic induction. It states that the direction of the current induced in a conductor by a changing magnetic field is such that the magnetic field created by the induced current opposes the initial changing magnetic field.</p>
+                    <p>In real life, these principles are foundational to the functioning of many devices, including electric generators, transformers, and even the charging of electric vehicles. Your successful completion of this circuit is a step towards understanding the complex interactions that power our modern world.</p>
+                    <button id="completeLevelOne">Complete Level</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="level-two-screen" class="hidden screen">
+        <div class="container">
+            <div class="sidebar">
+                <div class="flex-col">
+                    <div class="flex-row">
+                        <div class="component" draggable="true" id="wire-levelTwo">
+                            <img src="./wires-icon.png" alt="">
+                            <p>
+                                Wire
+                            </p>
+                        </div>
+
+                        <div class="component" draggable="true" id="magnet-levelTwo">
+                            <img src="./magnetIcon.png" alt="">
+                            <p>
+                                Magnet
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex-row">
+                        <div class="component" draggable="true" id="generator-levelTwo">
+                            <img src="./ac-generator-icon.png" alt="">
+                            <p>AC Generator</p>
+                        </div>
+                        <div class="component" draggable="true" id="light-bulb">
+                            <img src="./light-bulb-icon.png" alt="">
+                            <p>
+                                Light Bulb
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex-row">
+                        <div class="delete-option" id="delete-option">
+                            <img src="./delete-icon.png" alt="">
+                            <p>
+                                Delete
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="drop-area">
+                <h1>
+                    Level 2: Induction in Generators
+                </h1>
+                <p>
+                    In this level, you will construct an AC generator circuit and observe the effects of varying factors such as increased rotational speed and stronger magnets on the AC current produced. Drag and drop the AC generator, magnets, and other components to the work area.
+                </p>
+                <p id="hintText-levelTwo">
+                    <b>Hint:</b> Start by assembling the AC generator. 
+                </p>
+
+                <div class="bottom-div" id="after-simulation">
+                    <!-- Add sliding scale to change strength of magnet in its respective SI unit -->
+                    <div class="slider-container" id="ms">
+                        <label for="magnet-strength">Magnet Strength: (Gauss)</label>
+                        <input type="range" id="magnet-strength" name="magnet-strength" min="0" max="1000" value="500">
+                        <div class="slider-value">500</div>
+                    </div>
+                    <div class="slider-container" id="rs">
+                        <label for="rotational-speed">Rotational Speed: (RPM)</label>
+                        <input type="range" id="rotational-speed" name="rotational-speed" min="0" max="1000" value="500">
+                        <div id="sliderValue" class="slider-value">500</div>
+                    </div>
+                    <!-- Add a display of the voltage and current in the circuit, which directly rely on these factors -->
+                    <div class="voltage-current-display">
+                        <p>
+                            Voltage: <span id="voltage-display">0 V</span>
+                        </p>
+                        <p>
+                            Current: <span id="current-display">0 A</span>
+                        </p>
+                    </div>
+                    <button id="goToEndScreen">
+                        End Game
+                    </button>
+                </div>
+
+                <div id="level-two-end-screen">
+                    <div class="modal-content">
+                        <h2>Congratulations! You've Completed the Circuit!</h2>
+                        <p>Well done on completing Level 2! Through constructing and adjusting the AC generator circuit, you've directly experienced how variations in magnet strength and rotational speed influence the generated AC current's voltage. This hands-on exploration has illuminated the principles of electromagnetic induction in action, showcasing the critical factors that affect an AC generator's performance. Your successful navigation of these concepts is a testament to your growing understanding of the intricate dynamics that power electrical generators and, by extension, the modern world. Congratulations on this achievement!</p>
+                        <button id="completeLevelTwo">Complete Game</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="level-three-screen" class="hidden screen">
+
+    </div>
+
+    <script src='https://unpkg.com/panzoom@9.4.0/dist/panzoom.min.js'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // const panzoomElement = document.querySelector('.drop-area');
+            // if (panzoomElement) {
+            //     panzoom(panzoomElement);
+            // } else {
+            //     console.error('Panzoom target element not found');
+            // }
+            const homeScreen = document.getElementById('home-screen');
+            const instructionsScreen = document.getElementById('instructions-screen');
+            const levelsScreen = document.getElementById('levels-screen');
+            const levelInstructionsScreen = document.getElementById('level-instructions-screen');
+            const levelInstructions = document.getElementById('level-instructions');
+            
+            const startGameButton = document.getElementById('start-game');
+            const instructionsButton = document.getElementById('instructions');
+            const backToHomeButton = document.getElementById('back-to-home');
+            const backToHomeFromLevelsButton = document.getElementById('back-to-home-from-levels');
+            const backToLevelsButton = document.getElementById('back-to-levels');
+            const levelButtons = document.querySelectorAll('.level-button');
+            const startLevelButton = document.getElementById('start-level');
+
+            let isDeleteMode;
+            let batteryConnected = {
+                top: false,
+                bottom: false
+            }
+            let batteryMessageSent = false; let switchConnected = false; let magnetismActivated=false;
+            let selectedLevel = null; let acGeneratorPlaced = false; let wireConnectedToAcGenerator = false;
+            let magnetConnectedToGenerator = false; let lightBulbConnected = false;
+        
+            startGameButton.addEventListener('click', () => {
+                homeScreen.classList.add('hidden');
+                levelsScreen.classList.remove('hidden');
+            });
+        
+            instructionsButton.addEventListener('click', () => {
+                homeScreen.classList.add('hidden');
+                instructionsScreen.classList.remove('hidden');
+            });
+        
+            backToHomeButton.addEventListener('click', () => {
+                instructionsScreen.classList.add('hidden');
+                homeScreen.classList.remove('hidden');
+            });
+        
+            backToHomeFromLevelsButton.addEventListener('click', () => {
+                levelsScreen.classList.add('hidden');
+                homeScreen.classList.remove('hidden');
+            });
+        
+            backToLevelsButton.addEventListener('click', () => {
+                levelInstructionsScreen.classList.add('hidden');
+                levelsScreen.classList.remove('hidden');
+            });
+        
+            levelButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    selectedLevel = event.target.dataset.level;
+                    showLevelInstructions(selectedLevel);
+                });
+            });
+        
+            startLevelButton.addEventListener('click', () => {
+                let userWon = false; let levelScreen; 
+                levelInstructionsScreen.classList.add('hidden');
+                if (selectedLevel == 1) {
+                    levelScreen = document.getElementById('level-one-screen');
+                    levelScreen.classList.remove('hidden');
+
+                    document.querySelectorAll('#level-one-screen .component').forEach(item => {
+                        item.addEventListener('dragstart', handleDragStart);
+                        item.addEventListener('dragend', handleDragEnd);
+                    });
+                    const dropArea = document.querySelector('#level-one-screen .drop-area');
+                    dropArea.addEventListener('dragover', handleDragOver);
+                    dropArea.addEventListener('drop', handleDrop);
+                    
+                    function handleDragStart(e) {
+                        e.dataTransfer.setData('text/plain', e.target.id);
+                        setTimeout(() => e.target.classList.add('hide'), 0);
+                    }
+
+                    function handleDragEnd(e) {
+                        e.target.classList.remove('hide');
+                    }
+
+                    function handleDragOver(e) {
+                        e.preventDefault();
+                        dropArea.classList.add('over');
+                    }
+
+                    function handleDrop(e) {
+                        e.preventDefault();
+                        const id = e.dataTransfer.getData('text/plain');
+                        const draggableElement = document.getElementById(id);
+                        const img = document.createElement('img');
+                        img.id = `${id}-clone`;
+                        img.classList.add(`${id}-clone`);
+                        let images = ['battery', 'switch', 'resistor', 'metal-core']
+
+                        if (images.includes(id)) {
+                            if (countComponentsOfClass(id) >= 1) {
+                                alert(`You can only have one ${id} in the circuit. Drag it to move it.`);
+                                return; // Abort the operation
+                            }
+
+                            switch (id) {
+                                case 'battery':
+                                    img.src = 'battery-icon.png';
+                                    editHintText('Add a wire to the positive and negative terminals of the battery to create a connection.')
+                                    break;
+                                case 'switch':
+                                    img.src = 'switch-icon.png';
+                                    if (batteryMessageSent) {
+                                        editHintText('Connect the switch with the anode to continue the simulation!')
+                                    }
+                                    break;
+                                case 'resistor':
+                                    img.src = 'resistor-icon.png';
+                                    break;
+                                case 'metal-core':
+                                    img.src = 'metal-core-icon.png';
+                                    if (batteryMessageSent && switchConnected) {
+                                        editHintText('Connect the metallic core to both the cathode and the anode.')
+                                    }
+                                    break;
+                            }
+
+                            // Calculate drop position relative to the dropArea
+                            const dropAreaRect = dropArea.getBoundingClientRect();
+                            const dropX = e.clientX - dropAreaRect.left;
+                            const dropY = e.clientY - dropAreaRect.top;
+
+                            // Position the image at the drop location
+                            img.style.position = 'absolute';
+                            img.style.left = e.offsetX + 'px';
+                            img.style.top = e.offsetY + 'px';
+                            img.style.visibility = 'visible';
+                            img.classList.add('component')
+                            img.style.display = 'block';
+                            img.style.cursor = 'pointer';
+                            img.style.zIndex = "1000"; // High z-index to ensure visibility
+
+                            dropArea.appendChild(img);
+                            dropArea.classList.remove('over');
+                            makeComponentMovable(img); 
+                        } else if (id == 'wire') {
+                            const newWire = document.createElement('div');
+                            newWire.classList.add('wire');
+                            newWire.classList.add('component');
+                            newWire.style.display = 'block';
+                            newWire.style.cursor = 'pointer';
+                            newWire.style.zIndex = "1000"; 
+                            newWire.style.left = e.offsetX + 'px';
+                            newWire.style.top = e.offsetY + 'px';
+                            newWire.style.visibility = 'visible';
+                            newWire.style.width = '100px'; // Default width
+                            newWire.style.position = 'absolute';
+                            dropArea.appendChild(newWire);
+                            dropArea.classList.remove('over');
+                            makeWireResizableAndMovable(newWire);
+                        }
+
+                        checkForCollisions();
+                    }
+
+                    const deleteButton = document.querySelector('#level-one-screen #delete-option');
+                    isDeleteMode = false;
+                    deleteButton.addEventListener('click', function() {
+                        isDeleteMode = !isDeleteMode;
+                        deleteButton.classList.toggle('delete-selected', isDeleteMode);
+                    });
+                    document.querySelector('#level-one-screen .drop-area').addEventListener('click', function(event) {
+                        if (isDeleteMode && event.target.classList.contains('component')) {
+                            event.target.remove();
+                        }
+                    });
+
+                    let completeLevelOneButton = document.getElementById('completeLevelOne');
+                    completeLevelOneButton.addEventListener('click', () => {
+                        completeLevel(1);
+
+                        // Go back to the levels screen, and hide all others
+                        document.querySelectorAll('.screen').forEach(screen => {
+                            screen.classList.add('hidden');
+                        });
+                        levelsScreen.classList.remove('hidden');
+                    });
+                } else if (selectedLevel == 2) {
+                    levelScreen = document.getElementById('level-two-screen');
+                    levelScreen.classList.remove('hidden');
+
+                    document.querySelectorAll('#level-two-screen .component').forEach(item => {
+                        item.addEventListener('dragstart', (e) => {
+                            e.dataTransfer.setData('text/plain', e.target.id);
+                            setTimeout(() => e.target.classList.add('hide'), 0);
+                        });
+                        item.addEventListener('dragend', (e) => {
+                            e.target.classList.remove('hide');
+                        });
+                    });
+
+                    const deleteButton = document.querySelector('#level-two-screen #delete-option');
+                    isDeleteMode = false;
+                    deleteButton.addEventListener('click', function() {
+                        isDeleteMode = !isDeleteMode;
+                        deleteButton.classList.toggle('delete-selected', isDeleteMode);
+                    });
+                    document.querySelector('#level-two-screen .drop-area').addEventListener('click', function(event) {
+                        if (isDeleteMode && event.target.classList.contains('component')) {
+                            event.target.remove();
+                        }
+                    });
+
+                    const dropArea = document.querySelector('#level-two-screen .drop-area');
+                    dropArea.addEventListener('dragover', (e) => {
+                        e.preventDefault();
+                        dropArea.classList.add('over');
+                    });
+                    dropArea.addEventListener('drop', (e) => {
+                        e.preventDefault();
+                        const id = e.dataTransfer.getData('text/plain');
+                        const draggableElement = document.getElementById(id);
+                        const img = document.createElement('img');
+                        img.id = `${id}-clone`;
+                        img.classList.add(`${id}-clone`);
+
+                        let images=['magnet-levelTwo', 'generator-levelTwo', 'light-bulb'];
+                        if (images.includes(id)) {
+                            if (countComponentsOfClass(id, 2) >= 1) {
+                                alert(`You can only have one ${id} in the circuit. Drag it to move it.`);
+                                return; 
+                            }
+                            console.log(id);
+                            switch (id) {
+                                case 'generator-levelTwo':
+                                    img.src = 'ac-generator-icon.png';   
+                                    editHintText('Connect a wire to the left side of the generator.',2)
+                                    acGeneratorPlaced=true;
+                                    break;
+                                case 'magnet-levelTwo':
+                                    img.src='magnetIcon.png';
+                                    // Rotate the magnet permanently by 45 degrees by altering the style of the image
+                                    img.style.transform = 'rotate(45deg)';
+                                    if (acGeneratorPlaced && wireConnectedToAcGenerator && !magnetConnectedToGenerator) {
+                                        editHintText('Connect the magnet to the left side of the wire to continue the simulation.',2)
+                                    }
+                                    break;
+                                case 'light-bulb':
+                                    img.src='light-bulb-icon.png';
+                                    if (acGeneratorPlaced && wireConnectedToAcGenerator && magnetConnectedToGenerator && !lightBulbConnected) {
+                                        editHintText('Connect the light bulb to bottom of the AC generator through a wire.',2)
+                                    }
+                                    break;
+                            }
+
+                            const dropAreaRect = dropArea.getBoundingClientRect();
+                            const dropX = e.clientX - dropAreaRect.left;
+                            const dropY = e.clientY - dropAreaRect.top;
+
+                            // Position the image at the drop location
+                            img.style.position = 'absolute';
+                            img.style.left = e.offsetX + 'px';
+                            img.style.top = e.offsetY + 'px';
+                            img.style.visibility = 'visible';
+                            img.classList.add('component')
+                            img.style.display = 'block';
+                            img.style.cursor = 'pointer';
+                            img.style.zIndex = "1000"; // High z-index to ensure visibility
+
+                            dropArea.appendChild(img);
+                            dropArea.classList.remove('over');
+                            makeComponentMovable(img, 2); 
+                        } else if (id == 'wire-levelTwo') {
+                            const newWire = document.createElement('div');
+                            newWire.classList.add('wire');
+                            newWire.classList.add('component');
+                            newWire.style.display = 'block';
+                            newWire.style.cursor = 'pointer';
+                            newWire.style.zIndex = "1000"; 
+                            newWire.style.left = e.offsetX + 'px';
+                            newWire.style.top = e.offsetY + 'px';
+                            newWire.style.visibility = 'visible';
+                            newWire.style.width = '100px'; // Default width
+                            newWire.style.position = 'absolute';
+                            dropArea.appendChild(newWire);
+                            dropArea.classList.remove('over');
+                            makeWireResizableAndMovable(newWire, 2);
+                        }
+
+                        levelTwoGameLoop();
+                    });
+
+                    if (userWon) {
+                        completeLevel(selectedLevel); 
+                    }
+                }
+            });
+        
+            function showLevelInstructions(level) {
+                levelsScreen.classList.add('hidden');
+                levelInstructionsScreen.classList.remove('hidden');
+        
+                switch (level) {
+                    case '1':
+                        levelInstructions.innerHTML = `
+                            <p>Level 1: Magnetic Fields and Induction</p>
+                            <p>Introduction to Faraday's and Lenz's Laws through electromagnetic induction. Build a simple circuit with a metal core to observe Lenz's Law and Faraday’s Law:</p>
+                            <ul>
+                                <li>Drag and drop components to the work area.</li>
+                                <li>Connect the components to complete the circuit.</li>
+                            </ul>
+                        `;
+                        break;
+                    case '2':
+                        levelInstructions.innerHTML = `
+                            <p>In Level 2: Generators, your task is to construct an AC generator circuit and observe the effects of varying factors such as increased rotational speed and stronger magnets on the AC current produced.</p>
+                            <ul>
+                                <li>Drag and drop the AC generator, magnets, and other components to the work area.</li>
+                                <li>Adjust the rotational speed and magnet strength to see how they affect the voltage induced by the AC generator.</li>
+                                <li>Use the voltmeter to measure the induced voltage and observe the changes.</li>
+                            </ul>
+                            <p>Learning Outcome: Understand the working of an AC generator and the factors that affect the voltage it induces.</p>
+                        `;
+                        break;
+                    case '3':
+                        levelInstructions.innerHTML = `
+                            <p>In Level 3, you need to use electromagnetic induction to create a current. Use a coil of wire and a magnet to induce a current in the coil.</p>
+                            <ul>
+                                <li>Drag and drop the coil and magnet to the work area.</li>
+                                <li>Move the magnet inside the coil to generate a current.</li>
+                            </ul>
+                        `;
+                        break;
+                    default:
+                        levelInstructions.innerHTML = `<p>No instructions available for this level.</p>`;
+                }
+            }
+
+            function updateLevelAvailability() {
+                levelButtons.forEach(button => {
+                    const level = button.dataset.level;
+                    if (isLevelUnlocked(level)) {
+                        button.disabled = false;
+                        button.classList.remove('locked');
+                    } else {
+                        button.disabled = true;
+                        button.classList.add('locked');
+                    }
+                });
+            }
+
+            function isLevelUnlocked(level) {
+                const progress = JSON.parse(localStorage.getItem('gameProgress')) || {};
+                if (level === '1') return true;
+                return progress[`level${level - 1}`] === true;
+            }
+
+            function completeLevel(level) {
+                const progress = JSON.parse(localStorage.getItem('gameProgress')) || {};
+                progress[`level${level}`] = true;
+                localStorage.setItem('gameProgress', JSON.stringify(progress));
+                updateLevelAvailability();
+            }
+
+            updateLevelAvailability();
+
+            // Optional: Implement logic for changing cursor when dragging outside the drop-area
+            document.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                document.body.style.cursor = "not-allowed";
+            });
+
+            document.addEventListener('dragleave', function(e) {
+                document.body.style.cursor = "not-allowed";
+            });
+
+            document.addEventListener('drop', function(e) {
+                e.preventDefault();
+                document.body.style.cursor = "not-allowed";
+            });
+
+            function makeWireResizableAndMovable(wire, l=1) {
+                let startX, startY, startWidth, startHeight;
+                wire.addEventListener('mousedown', function(e) {
+                    // Prevent default drag behavior
+                    e.preventDefault();
+                    if (isDeleteMode) return; // Skip if in delete mode
+                    if (wire.classList.contains('anode') || wire.classList.contains('cathode') || wire.classList.contains('fixed-component')) return;
+                    startX = e.clientX;
+                    startY = e.clientY;
+                    startWidth = parseInt(document.defaultView.getComputedStyle(wire).width, 10);
+                    startHeight = parseInt(document.defaultView.getComputedStyle(wire).height, 10);
+                    document.documentElement.addEventListener('mousemove', doDrag, false);
+                    document.documentElement.addEventListener('mouseup', stopDrag, false);
+                });
+
+                function doDrag(e) {
+                    if (!e.ctrlKey && !wire.classList.contains('anode') && !wire.classList.contains('cathode') || !wire.classList.contains('fixed-component') ) {
+                        const deltaX = e.clientX - startX;
+                        const deltaY = e.clientY - startY;
+                        // Update wire's position
+                        wire.style.left = wire.offsetLeft + deltaX + 'px';
+                        wire.style.top = wire.offsetTop + deltaY + 'px';
+                        // Update startX and startY for continuous panning
+                        startX = e.clientX;
+                        startY = e.clientY;
+                        if (l== 1) {
+                            checkForCollisions();
+                        } else if (l == 2) {
+                            levelTwoGameLoop();
+                        }
+                        return;
+                    }
+
+                    if (wire.classList.contains('anode') || wire.classList.contains('cathode') || wire.classList.contains('fixed-component')) {
+                        if (wire.classList.contains('vertical')) {
+                            // When vertical, adjust height instead of width
+                            const newHeight = startHeight + e.clientY - startY;
+                            wire.style.height = newHeight + 'px';
+                        } else {
+                            // Adjust width only, height remains constant for horizontal
+                            const newWidth = startWidth + e.clientX - startX;
+                            wire.style.width = newWidth + 'px';
+                        }
+                    }
+                }
+
+                function stopDrag() {
+                    document.documentElement.removeEventListener('mousemove', doDrag, false);
+                    document.documentElement.removeEventListener('mouseup', stopDrag, false);
+                }
+
+                // Right-click to toggle orientation without needing the Ctrl key
+                wire.addEventListener('contextmenu', function(e) {
+                    e.preventDefault(); // Prevent the context menu
+                    if (wire.classList.contains('anode') || wire.classList.contains('cathode') || wire.classList.contains('fixed-component') ) return;
+                    if (wire.classList.contains('vertical')) {
+                        wire.classList.remove('vertical');
+                        wire.style.width = '100px'; // Reset to default horizontal width
+                        wire.style.height = '2px'; // Height remains constant
+                    } else {
+                        wire.classList.add('vertical');
+                        wire.style.width = '2px'; // For vertical, width becomes 2px
+                        wire.style.height = '100px'; // Assume 100px as the default vertical length
+                    }
+                });
+            }
+
+            function makeComponentMovable(component, l=1) {
+                let startX, startY;
+                component.addEventListener('mousedown', function(e) {
+                    e.preventDefault();
+                    if (component.classList.contains('fixed-component')) return;
+                    if (l == 1) {
+                        if (component.id == 'switch-clone') {
+                            if (switchConnected) return; // Skip if switch is already connected
+                        }
+                        if (component.id == 'metal-core-clone') {
+                            if (magnetismActivated) return;
+                        }
+                    } else if (l == 2) {
+                        // Add specific level two conditions here
+                        if (component.id == 'magnet-levelTwo-clone') {
+                            if (magnetConnectedToGenerator) return;
+                        } else if (component.id == 'generator-levelTwo-clone') {
+                            if (wireConnectedToAcGenerator) return;
+                        }
+                    }
+                    if (isDeleteMode) return; // Skip if in delete mode
+
+                    startX = e.clientX - component.offsetLeft;
+                    startY = e.clientY - component.offsetTop;
+
+                    function doDrag(e) {
+                        component.style.left = `${e.clientX - startX}px`;
+                        component.style.top = `${e.clientY - startY}px`;
+                        if (l == 1) {
+                            checkForCollisions();
+                        } else if (l == 2) {
+                            levelTwoGameLoop();
+                        }
+                    }
+
+                    function stopDrag() {
+                        document.removeEventListener('mousemove', doDrag);
+                        document.removeEventListener('mouseup', stopDrag);
+                    }
+
+                    document.addEventListener('mousemove', doDrag);
+                    document.addEventListener('mouseup', stopDrag);
+                });
+            }
+
+            function countComponentsOfClass(className, l=1) {
+                let dropAreaElement;
+                if (l == 1) {
+                    dropAreaElement = document.querySelector('#level-one-screen .drop-area');
+                } else if (l == 2) {
+                    dropAreaElement = document.querySelector('#level-two-screen .drop-area');
+                }
+                return dropAreaElement.querySelectorAll(`.${className}-clone`).length;
+            }
+
+            const checkForCollisions = () => {
+                const wires = document.querySelectorAll('.wire');
+                const battery = document.getElementById('battery-clone'); 
+                const switchComponent = document.getElementById('switch-clone');
+                const metalCoreComponent = document.getElementById('metal-core-clone');
+
+                const proximityThreshold = 0.5; // Defines how close is considered a "collision"
+
+                if (!wires) return;
+                if (battery && !batteryMessageSent) {
+                    const batteryTop = battery.offsetTop;
+                    const batteryLeft = battery.offsetLeft;
+                    const batteryRight = battery.offsetLeft + battery.offsetWidth;
+                    const batteryBottom = battery.offsetTop + battery.offsetHeight;
+                    const batteryCenterX = (batteryLeft + batteryRight) / 2;
+
+                    wires.forEach(wire => {
+                        const wireTop = wire.offsetTop;
+                        const wireBottom = wire.offsetTop + wire.offsetHeight;
+                        const wireLeft = wire.offsetLeft;
+                        const wireRight = wire.offsetLeft + wire.offsetWidth;
+                        let wireCenterX = (wireLeft + wireRight) / 2;
+                        // Check proximity to battery
+                        if (Math.abs(wireTop - batteryTop) <= proximityThreshold || Math.abs(wireBottom - batteryTop) <= proximityThreshold) {
+                            console.log('Wire is in close proximity to the positive terminal.');
+                            batteryConnected.top = true;
+                            wire.classList.add('anode');
+                            if (!batteryConnected.bottom) {
+                                createSuccessMessage('Congratulations on connecting a wire to the positive terminal!');
+                                editHintText('Add a wire to the negative terminal to complete the connection.');
+                            } else {
+                                batteryMessageSent = true;
+                                if (switchComponent) {
+                                    editHintText('Connect the switch to the anode!');
+                                } else {
+                                    editHintText('Drag and drop a switch from the components sidebar.');
+                                }
+                                createSuccessMessage("Battery successfully connected!", true, 'green', 
+                                "<b> Next Step: </b> Add the switch on the positive terminal (anode) to continue the simulation!");
+                            }
+                        } else if (Math.abs(wireTop - batteryBottom) <= proximityThreshold || Math.abs(wireBottom - batteryBottom) <= proximityThreshold) {
+                            console.log('Wire is in close proximity to the negative terminal');
+                            batteryConnected.bottom = true;
+                            wire.classList.add('cathode');
+
+                            if (!batteryConnected.top) {
+                                createSuccessMessage('Congratulations on connecting a wire to the negative terminal!');
+                                editHintText('Add a wire to the positive terminal to complete the connection.');
+                            } else {
+                                batteryMessageSent = true;
+                                if (switchComponent) {
+                                    editHintText('Connect the switch to the anode!');
+                                } else {
+                                    editHintText('Drag and drop a switch from the components sidebar.');
+                                }
+                                createSuccessMessage("Battery successfully connected!", true, 'green', 
+                                "<b> Next Step: </b> Add the switch on the positive terminal (anode) to continue the simulation!");
+                            }
+                        } 
+
+                        console.log('Battery Connected:', batteryConnected);
+                    });
+                } else if (switchComponent && batteryMessageSent && !switchConnected) {
+                    const switchTop = switchComponent.offsetTop;
+                    const switchLeft = switchComponent.offsetLeft;
+                    const switchBottom = switchComponent.offsetTop + switchComponent.offsetHeight;
+                    const switchRight = switchComponent.offsetLeft + switchComponent.offsetWidth;
+                    const anode = document.querySelector('.anode');
+                    let wireTop = anode.offsetTop;
+                    let wireLeft = anode.offsetLeft;
+                    let wireBottom = anode.offsetTop + wire.offsetHeight;
+                    let wireRight = anode.offsetLeft + wire.offsetWidth;
+
+                    if ((wireTop - switchTop > 10) && wireTop <= switchBottom) {
+                        console.log('In same row')
+                        // Check if the switch's left side is near the wire's right side
+                        if (Math.abs(switchLeft - wireRight) <= 45) {
+                            console.log('SWITCH CONNECTED, SHIT!')
+                            console.log('Wire Top:', wireTop, 'Wire Bottom:', wireBottom, 'Wire Left:', wireLeft, 'Wire Right:', wireRight);
+                            console.log('Switch Top:', switchTop, 'Switch Bottom:', switchBottom, 'Switch Left:', switchLeft, 'Switch Right:', switchRight);    
+                            anode.classList.remove('anode');
+                            anode.classList.add('fixed-component');
+                            const newWire = document.createElement('div');
+                            newWire.style.width = '2px';
+                            newWire.style.height = '80px';
+                            newWire.style.backgroundColor = 'black'; 
+                            newWire.style.position = 'absolute';
+                            newWire.classList.add('anode');
+                            newWire.classList.add('wire');
+                            newWire.classList.add('component');
+                            newWire.style.display = 'block';
+                            newWire.style.cursor = 'pointer';
+                            newWire.style.zIndex = "1000"; 
+                            newWire.visibility = 'visible';
+                            newWire.style.top = `${switchTop}px`;
+                            newWire.style.left = `${switchRight}px`;
+                            dropArea.appendChild(newWire);
+                            switchConnected = true;
+                            createSuccessMessage('Switch successfully connected!', true, 'green', 
+                            "<b> Next Step: </b> Add the metallic core to both the wires to continue the simulation!");
+                            if (metalCoreComponent) {
+                                editHintText('Connect the metallic core to both the cathode and the anode.');
+                            } else {
+                                editHintText('Drag and drop a metallic core from the components sidebar.');
+                            } 
+                        }
+                    } else {
+                        console.log('Not in same row')
+                    }
+                } else if (metalCoreComponent && batteryMessageSent && switchConnected && !magnetismActivated) {
+                    const metalCoreTop = metalCoreComponent.offsetTop;
+                    const metalCoreLeft = metalCoreComponent.offsetLeft;
+                    const metalCoreBottom = metalCoreComponent.offsetTop + metalCoreComponent.offsetHeight;
+                    const metalCoreRight = metalCoreComponent.offsetLeft + metalCoreComponent.offsetWidth;
+                    const anode = document.querySelector('.anode');
+                    const cathode = document.querySelector('.cathode');
+                    let anodeTop = anode.offsetTop;
+                    let anodeLeft = anode.offsetLeft;
+                    let anodeBottom = anode.offsetTop + anode.offsetHeight;
+                    let anodeRight = anode.offsetLeft + anode.offsetWidth;
+                    let cathodeTop = cathode.offsetTop;
+                    let cathodeLeft = cathode.offsetLeft;
+                    let cathodeBottom = cathode.offsetTop + cathode.offsetHeight;
+                    let cathodeRight = cathode.offsetLeft + cathode.offsetWidth;
+
+                    if ((cathodeTop - metalCoreTop > 10) && cathodeTop <= metalCoreBottom) {
+                        console.log('In same row')
+                        // Check if the metal core's left side is near the wire's right side
+                        if (Math.abs(cathodeRight - metalCoreLeft) <= 55) {
+                            console.log('Connected to cathode')
+                            // Now check whether its touching the bottom of the anode
+                            if (Math.abs(anodeBottom - metalCoreTop) <= 35) {
+                                console.log('METAL CORE CONNECTED');
+                                console.log('Cathode Top:', cathodeTop, 'Cathode Bottom:', cathodeBottom, 'Cathode Left:', cathodeLeft, 'Cathode Right:', cathodeRight);
+                                console.log('Metal Core Top:', metalCoreTop, 'Metal Core Bottom:', metalCoreBottom, 'Metal Core Left:', metalCoreLeft, 'Metal Core Right:', metalCoreRight);
+                                magnetismActivated=true;
+                                createSuccessMessage('Connected metallic core to circuit!');
+
+                                anode.classList.add('blueGlow');
+                                anode.classList.add('blueLineFlow');
+                                cathode.classList.add('blueGlow');
+                                cathode.classList.add('blueLineFlow');
+                                metalCoreComponent.classList.add('blueGlow');
+                                metalCoreComponent.classList.add('blueLineFlow');
+                                battery.classList.add('blueGlow');
+                                battery.classList.add('blueLineFlow');
+                                switchComponent.classList.add('blueGlow');
+                                switchComponent.classList.add('blueLineFlow');
+                                wires.forEach(wire => {
+                                    if (!wire.classList.contains('anode') || !wire.classList.contains('cathode')) {
+                                        wire.classList.add('blueGlow');
+                                        wire.classList.add('blueLineFlow');
+                                    }
+                                });
+
+                                editHintText('Congratulations! You have successfully completed the circuit. The simulation will now run.');
+                                // Wait 10 seconds, then display the end screen
+                                setTimeout(() => {
+                                    document.getElementById('level-one-end-screen').style.display = 'block';
+                                }, 10000);
+                            }
+                        } 
+                    }
+                }
+            }
+
+            const levelTwoGameLoop = () => {
+                const acGenerator = document.getElementById('generator-levelTwo-clone');
+                const magnet = document.getElementById('magnet-levelTwo-clone');
+                const lightBulb = document.getElementById('light-bulb-clone');
+                const wires = document.querySelector('#level-two-screen .drop-area').querySelectorAll('.wire');
+                let proximityThreshold = 5; let tolerance = 10;
+                if (!wires) return;
+                if (acGenerator && !wireConnectedToAcGenerator) {
+                    const acGeneratorTop = acGenerator.offsetTop;
+                    const acGeneratorLeft = acGenerator.offsetLeft;
+                    const acGeneratorBottom = acGenerator.offsetTop + acGenerator.offsetHeight;
+                    const acGeneratorRight = acGenerator.offsetLeft + acGenerator.offsetWidth;
+                    wires.forEach(wire => {
+                        const wireTop = wire.offsetTop;
+                        const wireBottom = wire.offsetTop + wire.offsetHeight;
+                        const wireLeft = wire.offsetLeft;
+                        const wireRight = wire.offsetLeft + wire.offsetWidth;
+                        // Check if the wire is close to the LEFT of the ac generator
+                        // First check if they are even in the same row (meaning their top and bottom should be in like the same line)
+                        if ((wireTop - acGeneratorTop > 10) && wireTop <= acGeneratorBottom) {
+                            console.log('In same row')
+                            // Check if the wire's right side is near the generator's left side
+                            if (Math.abs(wireRight - acGeneratorLeft) <= proximityThreshold) {
+                                wireConnectedToAcGenerator = true;
+                                wire.classList.add('fixed-component');
+                                if (magnet) {
+                                    editHintText('Connect the magnet to the other end of the wire.', 2);
+                                } else {
+                                    editHintText('Drag and drop the magnet from the components sidebar.', 2);
+                                }
+                                wireConnectedToAcGenerator=true;
+                                createSuccessMessage('Connected wire to the left side of the AC generator!',  true) 
+                            }
+                        } 
+                    });
+                } else if (magnet && wireConnectedToAcGenerator && !magnetConnectedToGenerator) {
+                    const magnetTop = magnet.offsetTop;
+                    const magnetLeft = magnet.offsetLeft;
+                    const magnetBottom = magnet.offsetTop + magnet.offsetHeight;
+                    const magnetRight = magnet.offsetLeft + magnet.offsetWidth;
+                    const wire = document.querySelector('#level-two-screen .wire.fixed-component');
+                    console.log(wire)
+                    let wireTop = wire.offsetTop;
+                    let wireLeft = wire.offsetLeft;
+                    let wireBottom = wire.offsetTop + wire.offsetHeight;
+                    let wireRight = wire.offsetLeft + wire.offsetWidth;
+                    console.log('Magnet:', magnetTop, magnetBottom, magnetLeft, magnetRight)
+                    console.log('Wire:', wireTop, wireBottom, wireLeft, wireRight)
+                    // Check if the right of the magnet meets with the left of the wire
+                    if (wireTop - tolerance < magnetBottom && wireTop + tolerance > magnetTop) {
+                        console.log('In same row');
+                        // Check if the magnet's right side is near the wire's left side
+                        if (Math.abs(magnetRight - wireLeft) <= 50) {
+                            magnetConnectedToGenerator = true;
+                            magnet.classList.add('fixed-component');
+                            if (lightBulb) {
+                                editHintText('Connect the light bulb to the bottom of the AC generator through a wire.', 2);
+                            } else {
+                                editHintText('Drag and drop the light bulb from the components sidebar.', 2);
+                            }
+                            createSuccessMessage('Connected magnet to the wire!', true);
+                            // Create a wire that has a height of 100 px and width 2px down from the bottom of the AC generator
+                            const newWire = document.createElement('div');
+                            newWire.style.width = '2px';
+                            newWire.style.height = '100px';
+                            newWire.style.backgroundColor = 'black';
+                            newWire.style.position = 'absolute';
+                            newWire.classList.add('wire');
+                            newWire.classList.add('component');
+                            newWire.classList.add('fixed-component');
+                            newWire.classList.add('lightBulbConnector')
+                            newWire.style.display = 'block';
+                            newWire.style.cursor = 'pointer';
+                            newWire.style.zIndex = "1000";
+                            newWire.visibility = 'visible';
+                            // Correct the calculation of acGeneratorCenter
+                            let acGeneratorCenter = acGenerator.offsetLeft + (acGenerator.offsetWidth / 2);
+
+                            // Ensure newWire is positioned correctly at the bottom of acGenerator
+                            newWire.style.top = `${acGenerator.offsetTop + acGenerator.offsetHeight}px`;
+                            newWire.style.left = `${acGeneratorCenter}px`; // Subtract half the width of newWire to center it
+                            document.querySelector('#level-two-screen .drop-area').appendChild(newWire);
+                        }
+                    }
+                } else if (lightBulb && magnetConnectedToGenerator && !lightBulbConnected) {
+                    const lightBulbTop = lightBulb.offsetTop;
+                    const lightBulbLeft = lightBulb.offsetLeft;
+                    const lightBulbBottom = lightBulb.offsetTop + lightBulb.offsetHeight;
+                    const lightBulbRight = lightBulb.offsetLeft + lightBulb.offsetWidth;
+                    const wire = document.querySelector('#level-two-screen .wire.lightBulbConnector');
+                    tolerance = 20
+                    let wireTop = wire.offsetTop;
+                    let wireLeft = wire.offsetLeft;
+                    let wireBottom = wire.offsetTop + wire.offsetHeight;
+                    let wireRight = wire.offsetLeft + wire.offsetWidth;
+                    // Check if the wire and the light bulb are in the same COLUMN
+                    if (lightBulbLeft - tolerance < wireRight && lightBulbLeft + tolerance > wireLeft) {
+                        console.log('In same column');
+                        // Check if the light bulb's top is near the wire's bottom
+                        if (Math.abs(lightBulbTop - wireBottom) <= 50) {
+                            lightBulbConnected = true;
+                            lightBulb.classList.add('fixed-component');
+                            createSuccessMessage('Connected light bulb to the circuit!', true);
+                            editHintText('Congratulations! You have successfully completed the circuit. The simulation will now run.', 2);
+                            
+                            // Add go to end screen button
+                            // then do "document.getElementById('level-two-end-screen').style.display = 'block';"
+                            // and then show the voltmeter, ampmeter, light bulb glowing, scale to adjust the strength of the magnet and that impacting the amperometer and voltmeter in real-time
+                            document.getElementById('after-simulation').style.display = 'block';
+                            const voltmeter = document.getElementById('voltage-display');
+                            const ampmeter = document.getElementById('current-display');
+                            const slider = document.getElementById('magnet-strength');
+                            const sliderValue = document.querySelector('#ms .slider-value');
+                            let voltage; let current; 
+                            let magnetStrengthValue=500; let rotationalSpeedValue=500;
+                            voltage = (magnetStrengthValue * rotationalSpeedValue) / 100;
+                            current = (magnetStrengthValue * rotationalSpeedValue) / 1000;
+                            voltmeter.textContent = voltage.toFixed(2) + ' V';
+                            ampmeter.textContent = current.toFixed(2) + ' A';
+
+                            slider.oninput = function() {
+                                sliderValue.textContent = this.value;
+                                magnetStrengthValue = this.value;
+                                voltage = (magnetStrengthValue * rotationalSpeedValue) / 100;
+                                current = (magnetStrengthValue * rotationalSpeedValue) / 1000;
+                                voltmeter.textContent = voltage.toFixed(2) + ' V';
+                                ampmeter.textContent = current.toFixed(2) + ' A';
+                            }
+
+                            const sliderTwo = document.getElementById('rotational-speed');
+                            const sliderValueTwo = document.querySelector('#rs .slider-value');
+                            sliderTwo.oninput = function() {
+                                sliderValueTwo.textContent = this.value;
+                                rotationalSpeedValue = this.value;
+                                voltage = (magnetStrengthValue * rotationalSpeedValue) / 100;
+                                current = (magnetStrengthValue * rotationalSpeedValue) / 1000;
+                                voltmeter.textContent = voltage.toFixed(2) + ' V';
+                                ampmeter.textContent = current.toFixed(2) + ' A';
+                            }
+
+                            document.getElementById('goToEndScreen').addEventListener('click', (e) => {
+                                document.getElementById('level-two-end-screen').style.display = 'block';
+                            });
+                        }
+                    }   
+                }
+            }   
+
+            function editHintText(t, l=1) {
+                if (l == 1) {
+                    document.getElementById('hintText').innerHTML = `<b>Hint:</b> ${t}`;
+                } else if (l==2) {
+                    document.getElementById('hintText-levelTwo').innerHTML = `<b>Hint:</b> ${t}`;
+                } 
+            }
+
+            function createSuccessMessage(m, deleteAfter=false, backgroundColor='green', nextStepsMessage) {
+                const existingMessage = document.getElementById('successMessageContainer');
+                if (existingMessage) {
+                    existingMessage.remove();
+                }
+
+                const messageContainer = document.createElement('div');
+                messageContainer.style.position = 'absolute';
+                messageContainer.style.top = '1rem'; 
+                messageContainer.style.left = '50%';
+                messageContainer.style.transform = 'translateX(-50%)';
+                messageContainer.id ='successMessageContainer'
+                messageContainer.style.backgroundColor = backgroundColor;
+                messageContainer.style.color = 'white';
+                messageContainer.style.padding = '1rem';
+                messageContainer.style.borderRadius = '5px';
+                messageContainer.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
+                messageContainer.style.zIndex = '1000'; 
+                messageContainer.style.display = 'flex';
+                messageContainer.style.justifyContent = 'space-between';
+                messageContainer.style.alignItems = 'center';
+                
+                let messageObject = document.createElement(
+                    'p'
+                );
+                messageObject.style.color = 'white'
+                messageContainer.style.fontSize = '15px';
+                messageObject.innerHTML = m;
+                messageContainer.appendChild(messageObject);
+
+                if (!deleteAfter) {
+                    const closeButton = document.createElement('span');
+                    closeButton.innerHTML = '&times;'; // 'x' symbol
+                    closeButton.style.cursor = 'pointer';
+                    closeButton.style.marginLeft = '20px';
+                    closeButton.style.fontSize = '1.5rem';
+                    closeButton.addEventListener('click', () => {
+                        messageContainer.remove();
+                    });
+                    messageContainer.appendChild(closeButton);
+                } else {
+                    setTimeout(() => {
+                        messageContainer.remove();
+                        if (nextStepsMessage) {
+                            createSuccessMessage(nextStepsMessage, false, 'orange   ');
+                        }
+                    }, 5000);
+                }
+                document.body.appendChild(messageContainer);
+            }
+        });
+    </script>
+</body>
+</html>
